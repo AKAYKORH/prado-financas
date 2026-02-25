@@ -36,7 +36,7 @@ img  { max-width:100%; display:block; }
 a    { color:inherit; text-decoration:none; }
 
 h1, h2, h3 { font-family:var(--font-display); font-weight:400; line-height:1.18; letter-spacing:0.01em; }
-h1 { font-size:clamp(2.2rem, 5.5vw, 3.8rem); }
+h1 { font-size:clamp(1.8rem, 4vw, 2.6rem); } 
 h2 { font-size:clamp(1.8rem, 4vw, 2.7rem); }
 h3 { font-size:clamp(1rem, 2vw, 1.2rem); }
 
@@ -73,10 +73,10 @@ h3 { font-size:clamp(1rem, 2vw, 1.2rem); }
   background:rgba(15,26,45,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
   border-bottom:var(--line);
 }
-.header__inner { display:flex; align-items:center; justify-content:space-between; height:68px; }
+.header__inner { display:flex; align-items:center; justify-content:space-between; height: 90px; } /* Cabeçalho mais alto */
 .header__logo { display:flex; align-items:center; }
-/* O filter invert deixa a logo branca automaticamente */
-.header__logo img { height:42px; width:auto; object-fit:contain; filter: brightness(0) invert(1); }
+.header__logo img { height: 70px; width:auto; object-fit:contain; } /* Logo muito maior */
+
 nav.header__nav { display:flex; align-items:center; gap:28px; }
 nav.header__nav a {
   font-size:0.76rem; letter-spacing:0.08em; font-weight:400;
@@ -89,7 +89,7 @@ nav.header__nav a:hover { color:var(--off-white); }
 #hero {
   min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden;
   background:linear-gradient(148deg, #08111e 0%, #0F1A2D 35%, #162840 65%, #1a3050 100%);
-  padding-top:68px;
+  padding-top: 90px;
 }
 .hero__grid {
   position:absolute; inset:0; pointer-events:none;
@@ -108,21 +108,48 @@ nav.header__nav a:hover { color:var(--off-white); }
   background:radial-gradient(ellipse, rgba(30,90,140,0.25) 0%, transparent 65%);
   pointer-events:none;
 }
-.hero__content { position:relative; z-index:2; max-width:760px; color:var(--off-white); }
-.hero__content .eyebrow { color:rgba(199,217,228,0.65); margin-bottom:20px; }
-.hero__content h1 { color:var(--white); margin-bottom:24px; line-height:1.2; }
-.hero__content h1 em { font-style:italic; color:var(--blue-light); font-weight: 300; }
+/* Flexbox para colocar Texto e Logo lado a lado */
+.hero__content { 
+  position:relative; 
+  z-index:2; 
+  color:var(--off-white); 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+}
+.hero__text {
+  flex: 1;
+  max-width: 600px;
+}
+.hero__image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero__image img {
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+}
+
+.hero__text .eyebrow { color:rgba(199,217,228,0.65); margin-bottom:20px; }
+.hero__text h1 { color:var(--white); margin-bottom:24px; line-height:1.3; }
 .hero__sub {
   font-size:1.05rem; color:rgba(243,239,232,0.75); margin-bottom:36px;
   max-width:540px; line-height:1.7; font-weight:300;
 }
-.hero__bullets { display:flex; gap:26px; margin-bottom:44px; flex-wrap:wrap; }
+.hero__bullets { display:flex; gap:26px; margin-bottom:44px; flex-wrap:wrap; justify-content: flex-start; }
 .hero__bullet {
   display:flex; align-items:center; gap:10px; font-size:0.72rem;
   letter-spacing:0.16em; text-transform:uppercase; color:var(--blue-light); font-weight:500;
 }
 .hero__bullet::before { content:''; width:20px; height:1px; background:var(--blue-light); flex-shrink:0; }
-.hero__ctas { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+.hero__ctas { display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content: flex-start; }
+
 .hero__tagline {
   position:absolute; bottom:40px; left:28px; z-index:2;
   font-family:var(--font-body); font-size:0.68rem; letter-spacing:0.14em;
@@ -209,8 +236,10 @@ nav.header__nav a:hover { color:var(--off-white); }
 
 /* ── SOBRE ── */
 .sobre__inner { display:grid; grid-template-columns:320px 1fr; gap:72px; align-items:start; }
-.sobre__foto { border-radius:var(--radius); overflow:hidden; background:var(--gray-light); }
-.sobre__foto img { width:100%; height:100%; object-fit:cover; object-position:center; }
+/* Margem no topo da foto para empurrar para baixo, e retirada dos filtros */
+.sobre__foto { border-radius:12px; overflow:hidden; margin-top: 60px; }
+.sobre__foto img { width:100%; height:auto; object-fit:cover; display:block; }
+
 .sobre__texto p  { color:var(--slate); margin-bottom:18px; font-size:0.93rem; line-height:1.8; }
 .sobre__quote {
   margin-top:28px; font-family:var(--font-display); font-size:1.22rem;
@@ -236,7 +265,7 @@ nav.header__nav a:hover { color:var(--off-white); }
 .card-dep__info span   { font-size:0.75rem; color:var(--slate); }
 
 /* ── FAQ ── */
-.faq__list { max-width:800px; margin-top:48px; }
+.faq__list { max-width:800px; margin-top:48px; margin-left: auto; margin-right: auto; }
 .faq-item  { border-bottom:1px solid var(--gray-light); }
 .faq-item:first-child { border-top:1px solid var(--gray-light); }
 .faq-q {
@@ -273,7 +302,7 @@ nav.header__nav a:hover { color:var(--off-white); }
 /* ── FOOTER ── */
 #footer { background:#060d18; color:rgba(199,217,228,0.36); padding:44px 0 30px; }
 .footer__inner { display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:flex-start; }
-.footer__logo img { height:32px; width:auto; object-fit:contain; opacity:0.6; margin-bottom:16px; filter: brightness(0) invert(1); }
+.footer__logo img { height:80px; width:auto; object-fit:contain; margin-bottom:16px; } /* Logo do rodapé gigante */
 .footer__brand p, .footer__info p { font-size:0.75rem; line-height:2.1; }
 .footer__links { display:flex; gap:18px; margin-top:14px; flex-wrap:wrap; }
 .footer__links a { font-size:0.72rem; letter-spacing:0.08em; transition:color var(--tr); }
@@ -286,14 +315,16 @@ nav.header__nav a:hover { color:var(--off-white); }
 
 @media (max-width:960px) {
   .sobre__inner { grid-template-columns:1fr; gap:36px; }
-  .sobre__foto  { max-width:320px; }
+  .sobre__foto  { max-width:320px; margin: 0 auto; }
   nav.header__nav { display:none; }
   .header__cta    { display:none; }
+  
+  .hero__content { flex-direction: column; text-align: center; }
+  .hero__bullets, .hero__ctas { justify-content: center; }
 }
 @media (max-width:600px) {
   .section { padding:68px 0; }
-  .hero__content h1 { font-size:2.2rem; }
-  .hero__ctas { flex-direction:column; }
+  .hero__content h1 { font-size:2.0rem; }
   .srv-grid { grid-template-columns:1fr; }
   .dif-grid { grid-template-columns:1fr; }
   .footer__inner { flex-direction:column; }
@@ -324,23 +355,34 @@ nav.header__nav a:hover { color:var(--off-white); }
   <div class="hero__glow"></div>
   <div class="hero__glow2"></div>
   <div class="container">
+    
     <div class="hero__content">
-      <span class="eyebrow">Inteligência financeira, conectada ao negócio.</span>
-      <h1>Cuidamos das suas finanças<br/>
-      <em style="color: var(--blue-light); font-style: italic; font-weight: 300;">para que você possa cuidar</em><br/>
-      do seu negócio.</h1>
-      
-      <p class="hero__sub">Gestão financeira e consultoria para organizar o seu financeiro e trazer clareza às decisões do seu negócio.</p>
-      <div class="hero__bullets">
-        <span class="hero__bullet">Controle</span>
-        <span class="hero__bullet">Previsão</span>
-        <span class="hero__bullet">Decisão</span>
+      <div class="hero__text">
+        <span class="eyebrow">Inteligência financeira, conectada ao negócio.</span>
+        
+        <h1>Cuidamos das suas finanças<br/>
+        para que você possa cuidar<br/>
+        do seu negócio.</h1>
+        
+        <p class="hero__sub">Gestão financeira e consultoria para organizar o seu financeiro e trazer clareza às decisões do seu negócio.</p>
+        
+        <div class="hero__bullets">
+          <span class="hero__bullet">Controle</span>
+          <span class="hero__bullet">Previsão</span>
+          <span class="hero__bullet">Decisão</span>
+        </div>
+        
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--primary">Agendar conversa</a>
+          <a href="#servicos" class="btn btn--outline">Ver serviços</a>
+        </div>
       </div>
-      <div class="hero__ctas">
-        <a href="#contato" class="btn btn--primary">Agendar conversa</a>
-        <a href="#servicos" class="btn btn--outline">Ver serviços</a>
+
+      <div class="hero__image">
+         <img src="logo.png" alt="Prado Finanças" />
       </div>
     </div>
+
   </div>
   <div class="hero__tagline">Nosso negócio é cuidar do seu.</div>
 </section>
@@ -508,8 +550,8 @@ nav.header__nav a:hover { color:var(--off-white); }
 <section id="sobre" class="section">
   <div class="container">
     <div class="sobre__inner">
-      <div class="sobre__foto" style="background: linear-gradient(160deg, #C7D9E4 0%, #577D8E 100%); border-radius:12px; overflow:hidden; min-height: 400px;">
-        <img src="foto.png" alt="Cássia Prado" style="width:100%; height:100%; object-fit:cover; mix-blend-mode: multiply; opacity: 0.8;"/>
+      <div class="sobre__foto">
+        <img src="foto.png" alt="Cássia Prado" />
       </div>
       <div class="sobre__texto">
         <span class="eyebrow">Sobre mim</span>
