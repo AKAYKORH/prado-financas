@@ -247,6 +247,326 @@ nav.header__nav a:hover { color:var(--off-white); }
 }
 
 /* ── DEPOIMENTOS ── */
+.dep-list { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; margin-top:48px;}
+.card-dep {
+  background:var(--white); border:1px solid var(--gray-light); border-radius:var(--radius);
+  padding:32px; box-shadow:var(--shadow); display:flex; flex-direction:column;
+}
+.card-dep__txt {
+  font-family:var(--font-body); font-style: italic; font-size:0.9rem; color:var(--slate);
+  margin-bottom:24px; line-height:1.7; flex-grow:1;
+}
+.card-dep__meta { display:flex; align-items:center; gap:13px; border-top:1px solid var(--gray-light); padding-top:16px; }
+.card-dep__av {
+  width:42px; height:42px; border-radius:50%; background:var(--blue-light);
+  display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:var(--navy); font-weight:600;
+}
+.card-dep__info strong { display:block; font-size:0.9rem; color:var(--navy); }
+.card-dep__info span   { font-size:0.75rem; color:var(--slate); }
+
+/* ── FAQ ── */
+.faq__list { max-width:800px; margin-top:48px; margin-left: auto; margin-right: auto; }
+.faq-item  { border-bottom:1px solid var(--gray-light); }
+.faq-item:first-child { border-top:1px solid var(--gray-light); }
+.faq-q {
+  width:100%; background:none; border:none; text-align:left; padding:24px 0; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  font-family:var(--font-body); font-size:1.05rem; color:var(--navy); font-weight:600;
+  transition:color var(--tr);
+}
+.faq-q:hover { color:var(--slate); }
+.faq-q .icon { width:14px; height:14px; flex-shrink:0; position:relative; opacity:0.6; transition:var(--tr); }
+.faq-q .icon::before,
+.faq-q .icon::after { content:''; position:absolute; background:var(--navy); transition:var(--tr); }
+.faq-q .icon::before { width:100%; height:2px; top:50%; left:0; transform:translateY(-50%); }
+.faq-q .icon::after  { width:2px; height:100%; left:50%; top:0; transform:translateX(-50%); }
+.faq-item.open .faq-q .icon::after { transform:translateX(-50%) rotate(90deg); opacity:0; }
+.faq-item.open .faq-q { color:var(--slate); }
+.faq-a {
+  font-size:0.9rem; color:var(--slate); line-height:1.8; max-height:0;
+  overflow:hidden; transition:max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-item.open .faq-a { max-height:500px; padding-bottom:24px; }
+
+/* ── CONTATO ── */
+#contato {
+  background:linear-gradient(148deg, #08111e 0%, #0F1A2D 50%, #162840 100%);
+  color:var(--off-white); position:relative; overflow:hidden;
+}
+.contato__inner { position:relative; z-index:2; text-align:center; max-width:680px; margin:0 auto; }
+.contato__inner h2 { color:var(--white); margin-bottom:14px; }
+.contato__inner p  { color:rgba(199,217,228,0.65); margin-bottom:42px; font-size:1rem; line-height:1.82; font-weight:300; }
+.contato__ctas { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+.contato__tagline { margin-top:52px; font-family:var(--font-display); font-size:1rem; color:rgba(199,217,228,0.28); }
+
+/* ── FOOTER ── */
+#footer { background:#060d18; color:rgba(199,217,228,0.36); padding:44px 0 30px; }
+.footer__inner { display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:flex-start; }
+.footer__logo img { height:80px; width:auto; object-fit:contain; margin-bottom:16px; } /* Logo do rodapé gigante */
+.footer__brand p, .footer__info p { font-size:0.75rem; line-height:2.1; }
+.footer__links { display:flex; gap:18px; margin-top:14px; flex-wrap:wrap; }
+.footer__links a { font-size:0.72rem; letter-spacing:0.08em; transition:color var(--tr); }
+.footer__links a:hover { color:var(--off-white); }
+.footer__bottom {
+  margin-top:34px; padding-top:20px; border-top:1px solid rgba(199,217,228,0.07);
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  font-size:0.68rem; color:rgba(199,217,228,0.2);
+}
+
+@media (max-width:960px) {
+  .sobre__inner { grid-template-columns:1fr; gap:36px; }
+  .sobre__foto  { max-width:320px; margin: 0 auto; }
+  nav.header__nav { display:none; }
+  .header__cta    { display:none; }
+  
+  .hero__content { flex-direction: column; text-align: center; }
+  .hero__bullets, .hero__ctas { justify-content: center; }
+}
+@media (max-width:600px) {
+  .section { padding:68px 0; }
+  .hero__content h1 { font-size:2.0rem; }
+  .srv-grid { grid-template-columns:1fr; }
+  .dif-grid { grid-template-columns:1fr; }
+  .footer__inner { flex-direction:column; }
+  .contato__ctas { flex-direction:column; align-items:stretch; }
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container header__inner">
+    <a href="#hero" class="header__logo" aria-label="Prado Finanças">
+      <img src="logo.png" alt="Prado Finanças Corporativas"/>
+    </a>
+    <nav class="header__nav" id="main-nav">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="https://wa.me/5541996839429" class="btn btn--primary header__cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero__grid"></div>
+  <div class="hero__glow"></div>
+  <div class="hero__glow2"></div>
+  <div class="container">
+    
+    <div class="hero__content">
+      <div class="hero__text">
+        <span class="eyebrow">Inteligência financeira, conectada ao negócio.</span>
+        
+        <h1>Cuidamos das suas finanças<br/>
+        para que você possa cuidar<br/>
+        do seu negócio.</h1>
+        
+        <p class="hero__sub">Gestão financeira e consultoria para organizar o seu financeiro e trazer clareza às decisões do seu negócio.</p>
+        
+        <div class="hero__bullets">
+          <span class="hero__bullet">Controle</span>
+          <span class="hero__bullet">Previsão</span>
+          <span class="hero__bullet">Decisão</span>
+        </div>
+        
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--primary">Agendar conversa</a>
+          <a href="#servicos" class="btn btn--outline">Ver serviços</a>
+        </div>
+      </div>
+
+      <div class="hero__image">
+         <img src="logo.png" alt="Prado Finanças" />
+      </div>
+    </div>
+
+  </div>
+  <div class="hero__tagline">Nosso negócio é cuidar do seu.</div>
+</section>
+
+<section id="para-quem" class="section">
+  <div class="container">
+    <span class="eyebrow">Para quem é</span>
+    <h2>Atendimento flexível,<br/>para cada realidade.</h2>
+    <div class="divider"></div>
+    <p style="max-width:540px;color:var(--slate);font-size:0.93rem;font-weight:300;">Cada negócio tem seu ritmo e sua estrutura. O atendimento é construído sob medida — por demanda, sem modelo engessado. Estrutura financeira sólida é construída com organização, não com complexidade.</p>
+    <div class="cards-3">
+      <div class="card">
+        <svg class="card__icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="13" r="6" stroke="#577D8E" stroke-width="1"/><path d="M6 32c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#577D8E" stroke-width="1" fill="none"/></svg>
+        <h3>Pessoa Física</h3>
+        <p>Organização financeira pessoal, controle de compromissos e planejamento para quem quer clareza no próprio dinheiro.</p>
+      </div>
+      <div class="card">
+        <svg class="card__icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="16" width="24" height="14" stroke="#577D8E" stroke-width="1" rx="1"/><path d="M12 16V10a6 6 0 0 1 12 0v6" stroke="#577D8E" stroke-width="1" fill="none"/></svg>
+        <h3>Pequenas Empresas</h3>
+        <p>Estruturação de controles, fluxo de caixa e rotinas para empresas que crescem e precisam de base financeira sólida.</p>
+      </div>
+      <div class="card">
+        <svg class="card__icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="20" width="10" height="12" stroke="#577D8E" stroke-width="1" rx="1"/><rect x="13" y="12" width="10" height="20" stroke="#577D8E" stroke-width="1" rx="1"/><rect x="24" y="16" width="10" height="16" stroke="#577D8E" stroke-width="1" rx="1"/></svg>
+        <h3>Médias Empresas</h3>
+        <p>Diagnóstico, auditoria, relatórios gerenciais e acompanhamento para operações com maior complexidade financeira.</p>
+      </div>
+    </div>
+    <div class="nota-box"><strong>Transparência antes de tudo:</strong> Serviço por demanda. Sem atendimento presencial diário. Sem exclusividade.</div>
+  </div>
+</section>
+
+<section id="servicos" class="section section--dark">
+  <div class="container">
+    <span class="eyebrow">Serviços</span>
+    <h2>O que posso<br/>fazer pelo seu financeiro.</h2>
+    <div class="divider"></div>
+    <div class="srv-grid">
+      <article class="card-srv">
+        <div class="card-srv__num">01</div>
+        <h3>Gestão Financeira</h3>
+        <p class="desc">Assumo a rotina financeira da sua empresa com disciplina e método, para que você possa liderar o seu negócio.</p>
+        <ul><li>Rotina de controle financeiro mensal</li><li>Conciliação bancária e organização de lançamentos</li><li>Calendário de compromissos e obrigações</li></ul>
+      </article>
+      <article class="card-srv">
+        <div class="card-srv__num">02</div>
+        <h3>Gestão de Fluxo de Caixa e Faturamento</h3>
+        <p class="desc">Controle real do que entra e sai, com previsibilidade para decisões mais seguras.</p>
+        <ul><li>Estruturação e acompanhamento do fluxo de caixa</li><li>Controle de faturamento e inadimplência</li><li>Previsões de receita e compromissos futuros</li></ul>
+      </article>
+      <article class="card-srv">
+        <div class="card-srv__num">03</div>
+        <h3>Auditoria e Diagnóstico Financeiro</h3>
+        <p class="desc">Análise estruturada da situação financeira para identificar gargalos e oportunidades de melhoria.</p>
+        <ul><li>Mapeamento e análise dos processos financeiros</li><li>Identificação de inconsistências e pontos críticos</li><li>Relatório de diagnóstico com recomendações práticas</li></ul>
+      </article>
+      <article class="card-srv">
+        <div class="card-srv__num">04</div>
+        <h3>Planejamento e Organização Financeira</h3>
+        <p class="desc">Estruturação do financeiro com base na realidade e nos objetivos do seu negócio.</p>
+        <ul><li>Organização e padronização de controles financeiros</li><li>Definição de indicadores e metas</li><li>Plano de ação para regularização financeira</li></ul>
+      </article>
+      <article class="card-srv">
+        <div class="card-srv__num">05</div>
+        <h3>Acompanhamento Gerencial e Relatórios Estratégicos</h3>
+        <p class="desc">Visão clara do desempenho financeiro com relatórios que apoiam a gestão e a tomada de decisão.</p>
+        <ul><li>Relatórios mensais de desempenho financeiro</li><li>Indicadores de resultado e análise de variações</li><li>Reuniões periódicas de acompanhamento</li></ul>
+      </article>
+      <article class="card-srv">
+        <div class="card-srv__num">06</div>
+        <h3>Consultoria Financeira por Demanda</h3>
+        <p class="desc">Suporte pontual para dúvidas, análises e decisões sem o compromisso de contrato fixo.</p>
+        <ul><li>Análise de cenários e suporte em decisões específicas</li><li>Orientação para organização de processos pontuais</li><li>Consultas avulsas com entrega objetiva</li></ul>
+      </article>
+      <article class="card-srv">
+        <div class="card-srv__num">07</div>
+        <h3>Organização e Estruturação de Processos Financeiros</h3>
+        <p class="desc">Para empresas que nunca tiveram processos formalizados ou precisam reorganizar o que já existe.</p>
+        <ul><li>Mapeamento e padronização de processos financeiros</li><li>Implantação de rotinas e controles básicos</li><li>Documentação e integração com ferramentas existentes</li></ul>
+      </article>
+    </div>
+    <p class="srv-footer" style="margin-top: 50px;">Não sabe por onde começar? <a href="#contato">Me diga seu cenário</a> e eu recomendo o melhor formato.</p>
+  </div>
+</section>
+
+<section id="como-funciona" class="section">
+  <div class="container">
+    <span class="eyebrow">Como funciona</span>
+    <h2>Do diagnóstico<br/>à decisão fundamentada.</h2>
+    <div class="divider"></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <div class="step__content">
+          <h3>Diagnóstico do cenário atual</h3>
+          <p>Antes de qualquer ação, ouço e entendo. Mapeio o momento financeiro da empresa, os processos existentes e as principais dores para ter clareza do que precisa ser feito.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <div class="step__content">
+          <h3>Organização dos controles e processos</h3>
+          <p>Com o cenário mapeado, estruturo os controles necessários. Padronizo rotinas, organizo lançamentos e defino o fluxo de trabalho adequado à realidade da empresa.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <div class="step__content">
+          <h3>Rotina de acompanhamento <span style="font-size:0.8rem;color:var(--slate);">(quando aplicável)</span></h3>
+          <p>Para contratos de gestão contínua, é estabelecida uma cadência de acompanhamento com conciliações, lançamentos e verificações periódicas, garantindo consistência e controle financeiro.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">4</div>
+        <div class="step__content">
+          <h3>Relatórios e previsões para decisão</h3>
+          <p>Informações organizadas se transformam em relatórios objetivos. Indicadores, análises e previsões que dão suporte real a quem precisa decidir.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">5</div>
+        <div class="step__content">
+          <h3>Ajustes contínuos conforme a realidade do negócio</h3>
+          <p>Negócios mudam. Os processos e relatórios acompanham essa evolução. Revisões periódicas garantem que o trabalho continue relevante e útil.</p>
+        </div>
+      </div>
+    </div>
+    <p class="como-fecho">Ouvir antes de agir. Depois, organizar com disciplina.</p>
+  </div>
+</section>
+
+<section id="diferenciais" class="section section--mid">
+  <div class="container">
+    <span class="eyebrow">Diferenciais</span>
+    <h2>Por que faz diferença<br/>trabalhar com método.</h2>
+    <div class="divider"></div>
+    <div class="dif-grid">
+      <div class="dif-item">
+        <svg class="dif-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#C7D9E4" stroke-width="0.8"/><path d="M4 8h8M4 5h8M4 11h5" stroke="#C7D9E4" stroke-width="0.8"/></svg>
+        <p>Processos estruturados conforme o estágio e a realidade da empresa - sem modelos engessados.</p>
+      </div>
+      <div class="dif-item">
+        <svg class="dif-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="6.5" stroke="#C7D9E4" stroke-width="0.8"/><path d="M8 4v5l2.5 1.5" stroke="#C7D9E4" stroke-width="0.8"/></svg>
+        <p>Disciplina e constância na execução: rotinas bem definidas que eliminam erros e retrabalho ao longo do tempo.</p>
+      </div>
+      <div class="dif-item">
+        <svg class="dif-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="1,12 5,8 9,10 15,3" stroke="#C7D9E4" stroke-width="0.8" fill="none"/></svg>
+        <p>Mapeamento, mensuração e padronização dos processos financeiros para gerar clareza, eficiência e visibilidade dos números.</p>
+      </div>
+      <div class="dif-item">
+        <svg class="dif-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L1 5v4c0 3.5 3 5.8 7 6.5 4-.7 7-3 7-6.5V5L8 1z" stroke="#C7D9E4" stroke-width="0.8" fill="none"/></svg>
+        <p>Integração bancária quando aplicável — assegurando que os dados reflitam com precisão a realidade financeira.</p>
+      </div>
+      <div class="dif-item">
+        <svg class="dif-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 14L14 2M7 2h7v7" stroke="#C7D9E4" stroke-width="0.8"/></svg>
+        <p>Previsões e análises que apoiam decisões reais — não apenas histórico, mas visão de futuro baseada em dados.</p>
+      </div>
+      <div class="dif-item">
+        <svg class="dif-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="6.5" stroke="#C7D9E4" stroke-width="0.8"/><path d="M8 5v4M8 11v.5" stroke="#C7D9E4" stroke-width="0.8"/></svg>
+        <p>Boa comunicação e transparência em todo o processo — você sempre sabe o que está sendo feito e por quê.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" class="section">
+  <div class="container">
+    <div class="sobre__inner">
+      <div class="sobre__foto">
+        <img src="foto.png" alt="Cássia Prado" />
+      </div>
+      <div class="sobre__texto">
+        <span class="eyebrow">Sobre mim</span>
+        <h2>Muito prazer,<br/>sou a Cássia.</h2>
+        <div class="divider"></div>
+        <p>Minha missão é trazer clareza e controle para as finanças de empreendedores e pequenas empresas. Acredito que números organizados não são apenas burocracia, mas a ferramenta mais poderosa para tomar boas decisões.</p>
+        <p>Trabalho para simplificar o que parece complexo, mapeando cenários e criando rotinas financeiras com método e disciplina. Meu objetivo não é apenas entregar relatórios, mas construir uma estrutura confiável para que você possa liderar o seu negócio com tranquilidade e visão de futuro.</p>
+        <div class="sobre__quote">
+          "Estrutura financeira sólida é construída com organização e constância."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="depoimentos" class="section section--tinted">
   <div class="container">
     <span class="eyebrow">Depoimentos</span>
